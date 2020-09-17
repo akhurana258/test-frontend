@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+.tableStyle{
+
+  display: flex;
+  justify-content: center;
+}
+.table {
+   border-spacing: 4px;
+   border: 1px solid black;
+}
+
+.popModal {
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+    border: 1px solid black;
+    width: 800px;
+    height: 400px;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    background-color: aliceblue;
+}
