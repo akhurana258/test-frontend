@@ -23,7 +23,7 @@ function App() {
     <div className="App">
       <UserListing handleDisplay={handleDisplay} display={display} />
       <div style= {{display: "flex", justifyContent: "center" , flexDirection: "column", alignItems:"center"}} >
-        <h1 onClick={`handleDisplay`} > +</h1>
+        <h1 onClick={handleDisplay} > +</h1>
         <FormData display={display} handleDisplay={handleDisplay} {...updateItem} />
       </div>
     </div>

@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import connectionAxois from "../connection";
 
 export default function (props) {
-  
+  const headers= {
+      "Content-type": "multipart/form-data"
+  }
     const {display ='block'} =props;
     const [first_name, setfirst_name] = useState('' );
     const [last_name, setlast_name] = useState(  '') ;
@@ -38,16 +40,20 @@ setprofile_image(event.target.files[0])
             nextUrl = 'user/updateUser'
         }
         try {
-            const data ={
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                phone_number: phone_number,
-                profile_image:profile_image
-            }
-
-
-            const result = await connectionAxois({headers : {}, method: 'post', data,nextUrl});
+            // const data ={
+            //     first_name: first_name,
+            //     last_name: last_name,
+            //     email: email,
+            //     phone_number: phone_number,
+            //     profile_image:profile_image
+            // }
+const formData = new FormData();
+formData.append('first_name', first_name);
+formData.append('last_name', last_name)
+formData.append('email',email);
+formData.append('phone_number',phone_number)
+formData.append('profile_image',profile_image);
+            const result = await connectionAxois({ headers,method: 'post', data:formData,nextUrl});
             if(result === 'Email exists'){
               return  seterrEmail("Please enter the another emails");
             }else{
@@ -77,7 +83,7 @@ const handleChange  = (event)=>{
     }
 }
     return (
-        <div style ={{display, flexDirection: "column", width: 300 , height: 400, zIndex: 5}} >
+        <div style ={{display, flexDirection: "column", width: 300 , height: 400}} >
             <input type = "text" name= "first_name" onChange={handleChange} value = {first_name} placeholder= {"Enter the First Name"}  required/>
             <input type = "text" name= "last_name" onChange={handleChange} value = {last_name} placeholder= {"Enter the last Name"} required/>
             <input type = "email" name= "email" onChange={handleChange} value = {email} placeholder= {"Enter the email"}  required/>

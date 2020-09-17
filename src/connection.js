@@ -1,7 +1,7 @@
 import axios from 'axios';
 const url = 'http://localhost:4000';
 const CreateConnection= async(values)=>{
-    const { method= "get", data={}, headers= {"Content-Type": "application/json"}, nextUrl = '' } = values;
+    const { method= "get", data={}, headers={}, nextUrl = '' } = values;
     try{
         const result = await axios({method ,headers, url : `${url}/${nextUrl}`, data})
         return result.data

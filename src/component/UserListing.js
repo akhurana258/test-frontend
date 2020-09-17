@@ -12,7 +12,7 @@ import ViewData from "./ViewData";
     }
     const getListing = async()=>{
         try{
-            const result = await connectionAxios({nextUrl: 'user/list'});
+            const result = await connectionAxios({nextUrl: 'user/list', headers:  {"Content-Type": "application/json"}});
             setuserListing(result);
         }
         catch(error){
